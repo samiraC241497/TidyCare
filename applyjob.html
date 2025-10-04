@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply for Job</title>
+  <link rel="stylesheet" href="applyjob.css">
+  
+</head>
+<body>
+ <!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+ <header>
+  <div class="container">
+                                                                                                                                                                                                            
+ <nav>
+   <a href="index.html" class="logo">Tidy<span>Care</span></a>
+     <ul class="nav-links">
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About</a></li>
+         <li class="dropdown">
+             <a href="#">Services</a>
+             <div class="dropdown-content">
+                 <a href="cleanner.html">Cleaner</a>
+                 <a href="cook.html">Cooker</a>
+                 <a href="oldagecare.html">Old Age Care</a>
+                 <a href="babysitter.html">Baby Sitter</a>
+                 <a href="garden.html">Gardener</a>
+             </div>
+         </li>
+         <li class="dropdown">
+  <a href="#">Job</a>
+  <div class="dropdown-content">
+      <a href="postjob.html">Post Job</a> 
+      <a href="searchjob.html">Search Job</a> 
+  </div>
+          </li>
+         <li><a href="./contact.html">Contact</a></li>
+         <li><a href="booking.html">Book Now</a></li>
+         <li><a href="login.html">Log In</a></li>
+     </ul>
+ </nav>
+</div>
+</header>
+<!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+  <section>
+    <h2>Apply for Job</h2>
+
+    <!-- Display the job details -->
+    <div id="jobDetails"></div>
+
+    <form id="applicationForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="resume">Upload Resume</label>
+      <input type="file" id="resume" name="resume" required>
+      <p id="fileNameDisplay" style="font-size: 14px; color: #5d3a3a;"></p>
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <button class="back-button" onclick="window.location.href='searchjob.html'">Back to Job List</button>
+  </section>
+
+  <!-- Modal Popup -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <p>Your application has been submitted successfully!</p>
+      <button onclick="closeModal()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Retrieve the job information from localStorage
+    const selectedJob = JSON.parse(localStorage.getItem('selectedJob'));
+
+    // Display the job details
+    const jobDetails = document.getElementById('jobDetails');
+    if (selectedJob) {
+      jobDetails.innerHTML = `
+        <h3>${selectedJob.title}</h3>
+        <p><strong>Category:</strong> ${selectedJob.category}</p>
+        <p><strong>Description:</strong> ${selectedJob.description}</p>
+        <p><strong>Salary:</strong> ${selectedJob.salary}</p>
+        <p><strong>Location:</strong> ${selectedJob.location}</p>
+        <p><strong>Time:</strong> ${selectedJob.time}</p>
+      `;
+    }
+
+    // Show selected resume filename
+    document.getElementById('resume').addEventListener('change', function () {
+      const fileName = this.files[0]?.name || '';
+      document.getElementById('fileNameDisplay').textContent = fileName;
+    });
+
+    // Handle form submission
+    document.getElementById('applicationForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const resume = document.getElementById('resume').files[0];
+
+      if (name && email && resume) {
+        // Show modal
+        document.getElementById('successModal').style.display = 'flex';
+        this.reset();
+        document.getElementById('fileNameDisplay').textContent = '';
+      } else {
+        alert('Please fill in all fields.');
+      }
+    });
+
+    // Close modal
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+  </script>
+<!-------------------------------------------------------startFOOTER--------------------------------------------------->
+<footer>
+  <div class="container">
+       <div class="row">
+             <div class="col" id="company">
+               <h1 class="logo">Tidy<span>Care</span></h1>
+               <p>
+                   We provide reliable home and 
+                   office services, making everyday life smoother and stress-free.
+               </p>
+               <div class="social">
+                   <a href="#"><i class="fab fa-facebook"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-linkedin"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+               </div>
+             </div>
+
+             <div class="col" id="Services">
+              <h3>Services</h3>
+              <div class="links">
+               <a href="cleanner.html">Cleaner</a>
+               <a href="cook.html">Cooker</a>
+               <a href="oldagecare.html">Old Age Care</a>
+               <a href="babysitter.html">Baby Sitter</a>
+               <a href="garden.html">Gardener</a>
+              </div>
+         </div>
+
+         <div class="col" id="quick-Links">
+            <h3>Quick Links</h3>
+            <div class="links">
+               <a href="./index.html">Home</a>
+               <a href="about.html">About</a>
+               <a href="policy.html">Our policy</a>
+               <a href="help.html">Help</a>                   
+            </div>
+         </div>
+
+             <div class="col" id="contact">
+                 <h3>Contact</h3>
+                 <div class="contact-details">
+                   <i class="fa fa-location"></i>
+                   <p>Kumira, Chittagong</p>
+                 </div>
+                 <div class="contact-details">
+                   <i class="fa fa-phone"></i>
+                   <p>+880-1834562322</p>                    
+                 </div>                 
+             </div>
+       </div>
+
+       <div class="row">
+            <div class="form">
+                <form action="">
+                     <input type="text" placeholder="Email here...">
+                     <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                </form>
+            </div>
+       </div>  
+   </div>
+
+   <div class="credit-line">
+       <p>© 2025 TidyCare | All rights reserved.</p>
+   </div>
+</footer>
+ <!---------------FOOTER END--------------------->
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up | Log In</title>
+    <link rel="stylesheet" href="login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  </head>
+  <body>
+    <!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+    <header>
+      <div class="container">
+                                                                                                                                                                                                                
+     <nav>
+       <a href="index.html" class="logo">Tidy<span>Care</span></a>
+         <ul class="nav-links">
+             <li><a href="index.html">Home</a></li>
+             <li><a href="about.html">About</a></li>
+             <li class="dropdown">
+                 <a href="#">Services</a>
+                 <div class="dropdown-content">
+                     <a href="cleanner.html">Cleaner</a>
+                     <a href="cook.html">Cooker</a>
+                     <a href="oldagecare.html">Old Age Care</a>
+                     <a href="babysitter.html">Baby Sitter</a>
+                     <a href="garden.html">Gardener</a>
+                 </div>
+             </li>
+             <li class="dropdown">
+              <a href="#">Job</a>
+              <div class="dropdown-content">
+                  <a href="postjob.html">Post Job</a> 
+                  <a href="searchjob.html">Search Job</a> 
+              </div>
+                      </li>
+             <li><a href="./contact.html">Contact</a></li>
+             <li><a href="booking.html">Book Now</a></li>
+             <li><a href="login.html">Log In</a></li>
+         </ul>
+     </nav>
+   </div>
+   </header>
+ <!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+    <div class="wrapper">
+      <div class="title-text">
+        <div class="title login">
+          Account 
+        </div>
+        <div class="title signup">
+          Account
+        </div>
+      </div>
+      <div class="form-container">
+        <div class="slide-controls">
+          <input type="radio" name="slide" id="login" checked>
+          <input type="radio" name="slide" id="signup">
+          <label for="login" class="slide login">Login</label>
+          <label for="signup" class="slide signup">SignUp</label>
+          <div class="slider-tab"></div>
+        </div>
+        <div class="form-inner">
+          <!-- Login Form -->
+          <form action="#" class="login">
+            <div class="field">
+              <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <div class="pass-link">
+              <a href="#">Reset password?</a>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">
+              Don't Have Account? <a href="">Create A New</a>
+            </div>
+          </form>
+
+          <!-- Sign Up Form -->
+          <form action="#" class="signup">
+            <div class="field">
+              <input type="text" placeholder="Email Address" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Password" required>
+            </div>
+            <div class="field">
+              <input type="password" placeholder="Confirm Password" required>
+            </div>
+            <div class="field btn">
+              <div class="btn-layer"></div>
+              <input type="submit" value="SignUp">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript to handle form switching -->
+    <script>
+      const loginText = document.querySelector(".title-text .login");
+      const loginForm = document.querySelector("form.login");
+      const loginBtn = document.querySelector("label.login");
+      const signupBtn = document.querySelector("label.signup");
+      const signupLink = document.querySelector("form .signup-link a");
+
+      // Switch to signup form
+      signupBtn.onclick = () => {
+        loginForm.style.marginLeft = "-50%";
+        loginText.style.marginLeft = "-50%";
+      };
+
+      // Switch to login form
+      loginBtn.onclick = () => {
+        loginForm.style.marginLeft = "0%";
+        loginText.style.marginLeft = "0%";
+      };
+
+      // Trigger the signup form when "Create A New" link is clicked
+      signupLink.onclick = () => {
+        signupBtn.click();
+        return false;
+      };
+    </script>
+    <!--------------------------------------------------------FOOTER------------------------------------------------->
+<footer>
+  <div class="container">
+       <div class="row">
+             <div class="col" id="company">
+               <h1 class="logo">Tidy<span>Care</span></h1>
+               <p>
+                   We provide reliable home and 
+                   office services, making everyday life smoother and stress-free.
+               </p>
+               <div class="social">
+                   <a href="#"><i class="fab fa-facebook"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-linkedin"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+               </div>
+             </div>
+
+             <div class="col" id="Services">
+              <h3>Services</h3>
+              <div class="links">
+               <a href="cleanner.html">Cleaner</a>
+               <a href="cook.html">Cooker</a>
+               <a href="oldagecare.html">Old Age Care</a>
+               <a href="babysitter.html">Baby Sitter</a>
+               <a href="garden.html">Gardener</a>
+              </div>
+         </div>
+
+         <div class="col" id="quick-Links">
+            <h3>Quick Links</h3>
+            <div class="links">
+               <a href="./index.html">Home</a>
+               <a href="about.html">About</a>
+               <a href="policy.html">Our policy</a>
+               <a href="help.html">Help</a>                   
+            </div>
+         </div>
+
+             <div class="col" id="contact">
+                 <h3>Contact</h3>
+                 <div class="contact-details">
+                   <i class="fa fa-location"></i>
+                   <p>Kumira, Chittagong</p>
+                 </div>
+                 <div class="contact-details">
+                   <i class="fa fa-phone"></i>
+                   <p>+880-1834562322</p>                    
+                 </div>                 
+             </div>
+       </div>
+
+       <div class="row">
+            <div class="form">
+                <form action="">
+                     <input type="text" placeholder="Email here...">
+                     <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                </form>
+            </div>
+       </div>  
+   </div>
+
+   <div class="credit-line">
+       <p>© 2025 TidyCare | All rights reserved.</p>
+   </div>
+</footer>
+
+
+  </body>
+</html>

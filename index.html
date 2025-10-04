@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TidyCare - An Expert Caregiver Agency</title>
+    
+     <link rel="stylesheet" href="style.css"> 
+<!---------font awesome for css----------->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     
+</head>
+ 
+<body>
+  <body>
+    <div id="header">    
+          <div class="container">
+         <!-- Navigation Bar -->
+         <nav>
+          <a href="index.html" class="logo">Tidy<span>Care</span></a>
+            <ul class="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li class="dropdown">
+                    <a href="#">Services</a>
+                    <div class="dropdown-content">
+                        <a href="cleanner.html">Cleaner</a>
+                        <a href="cook.html">Cooker</a>
+                        <a href="oldagecare.html">Old Age Care</a>
+                        <a href="babysitter.html">Baby Sitter</a>
+                        <a href="garden.html">Gardener</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Job</a>
+                    <div class="dropdown-content">
+                        <a href="postjob.html">Post Job</a>
+                        <a href="searchjob.html">Search Job</a>
+                    </div>
+                </li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+        
+        
+        <div class="header-content">
+          <h1>Bringing Peace to<br><span> Your Life!</span></h1>
+           <a href="about.html"><button class="submit">Visit us</button></a> 
+    </div>
+  </div>
+  </div>
+  
+
+
+<!--------------- about ------------->
+
+<section id="about">
+    <div class="about-content">
+        <h1>MORE ABOUT US</h1>
+        <h3>Committed to keeping your space amazing ...</h3>
+        
+        <p class="text">
+            At Amazing Space Professional Cleaning Services, we are passionate about delivering exceptional customer service and clean, peaceful environments for our clients. We started our company because we tried countless others and just couldn't find a provider that consistently met our high standards for cleanliness, reliability, and service.<br/>
+
+            We clean beyond the visible dirt and dust with products that are safe for delicate surfaces and non-toxic to our clients and their pets. We carefully select only reliable and trustworthy individuals for our staff and we invest heavily in them, so that they take good care of you. We're so committed to our customers' satisfaction that we back all of our services with a 48-hour guarantee.
+        </p>
+        <div class="skills">
+            <a href="about.html"><button>Learn more</button></a>
+        </div>
+    </div>
+</section>
+
+<script>
+// Function to detect if an element is in the viewport
+  function isElementInView(element) {
+  const rect = element.getBoundingClientRect();
+  const navbarHeight = document.querySelector('nav').offsetHeight; // Get navbar height
+  return rect.top <= window.innerHeight - navbarHeight && rect.bottom >= navbarHeight;
+}
+
+// Select the "about" section
+const aboutSection = document.getElementById("about");
+
+// Add the scroll event listener
+window.addEventListener("scroll", function() {
+  if (isElementInView(aboutSection)) {
+    aboutSection.classList.add("active");
+  }
+});
+
+</script>
+
+
+<!------------- Meet Our Team Section ------------>
+<section id="team">
+    <h2 class="team-heading">Meet Our Team</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="images/tm1.jpeg" alt="Team Member">
+            <h4>Arpita Dey</h4>     
+            <p>
+                ID-C241483<br/>
+                <i class="fa fa-phone"></i> +880-18*********
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="images/tm2.jpeg" alt="Team Member">
+            <h4>Tahmina Sultana</h4>
+            <p>
+                ID-C241492<br/>
+                <i class="fa fa-phone"></i> +880-18*********
+            </p>
+        </div>
+        <div class="team-member">
+            <img src="images/tm3.jpeg" alt="Team Member">
+            <h4>Samira Tasnim</h4>
+            <p>
+                ID-C241497<br/>
+                <i class="fa fa-phone"></i> +880-18*********
+            </p>
+        </div>
+    </div>
+</section>
+  
+  
+
+
+<!------------- Testimonial------------>
+<section id="testimonials">
+    <h2 class="testimonial-heading">What Our Clients Say</h2>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <p>"TidyCare’s team did an amazing job in organizing and cleaning my office. Their attention to detail is incredible, and I can see how much they care about providing a peaceful, clean space. Highly recommend!"</p>
+            <h4>- Mohammad Karim</h4>
+            <p>Business Owner</p>
+        </div>
+        <div class="testimonial">
+            <p>"I’ve used TidyCare for my home, and I am impressed every time! The team is so professional and thorough. They take care of everything and leave my home spotless."</p>
+            <h4>- Mrs. Sikdar</h4>
+            <p>Homeowner</p>
+        </div>
+        <div class="testimonial">
+            <p>"Amazing service! The team at TidyCare exceeded my expectations. They took great care in making sure my office was perfectly clean and organized. Very happy with their work!"</p>
+            <h4>- Sawkot Islam</h4>
+            <p>Office Manager</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!---------------FOOTER--------------------->
+<footer>
+   <div class="container">
+        <div class="row">
+              <div class="col" id="company">
+                <h1 class="logo">Tidy<span>Care</span></h1>
+                <p>
+                    We provide reliable home and 
+                    office services, making everyday life smoother and stress-free.
+                </p>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+              </div>
+
+              <div class="col" id="Services">
+                <h3>Services</h3>
+                <div class="links">
+                 <a href="cleanner.html">Cleaner</a>
+                 <a href="cook.html">Cooker</a>
+                 <a href="oldagecare.html">Old Age Care</a>
+                 <a href="babysitter.html">Baby Sitter</a>
+                 <a href="garden.html">Gardener</a>
+                </div>
+           </div>
+
+           <div class="col" id="quick-Links">
+              <h3>Quick Links</h3>
+              <div class="links">
+                 <a href="./index.html">Home</a>
+                 <a href="about.html">About</a>
+                 <a href="policy.html">Our policy</a>
+                 <a href="help.html">Help</a>                   
+              </div>
+           </div>
+
+              <div class="col" id="contact">
+                  <h3>Contact</h3>
+                  <div class="contact-details">
+                    <i class="fa fa-location"></i>
+                    <p>Kumira, Chittagong</p>
+                  </div>
+                  <div class="contact-details">
+                    <i class="fa fa-phone"></i>
+                    <p>+880-1834562322</p>                    
+                  </div>                 
+              </div>
+        </div>
+
+        <div class="row">
+             <div class="form">
+                 <form action="">
+                      <input type="text" placeholder="Email here...">
+                      <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                 </form>
+             </div>
+        </div>  
+    </div>
+
+    <div class="credit-line">
+        <p>© 2025 TidyCare | All rights reserved.</p>
+    </div>
+</footer>
+
+  <!---------------FOOTER END--------------------->
+</body>
+</html>

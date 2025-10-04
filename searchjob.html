@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Jobs</title>
+  <link rel="stylesheet" href="searchjob.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">  
+</head>
+<body>
+ <!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+ <header>
+  <div class="container">
+                                                                                                                                                                                                            
+ <nav>
+   <a href="index.html" class="logo">Tidy<span>Care</span></a>
+     <ul class="nav-links">
+         <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About</a></li>
+         <li class="dropdown">
+             <a href="#">Services</a>
+             <div class="dropdown-content">
+                 <a href="cleanner.html">Cleaner</a>
+                 <a href="cook.html">Cooker</a>
+                 <a href="oldagecare.html">Old Age Care</a>
+                 <a href="babysitter.html">Baby Sitter</a>
+                 <a href="garden.html">Gardener</a>
+             </div>
+         </li>
+         <li class="dropdown">
+          <a href="#">Job</a>
+          <div class="dropdown-content">
+              <a href="postjob.html">Post Job</a> 
+              <a href="searchjob.html">Search Job</a> 
+          </div>
+      </li>
+      
+         <li><a href="./contact.html">Contact</a></li>
+         <li><a href="booking.html">Book Now</a></li>
+         <li><a href="login.html">Log In</a></li>
+     </ul>
+ </nav>
+</div>
+</header>
+<!-------------------------------------- Navigation Bar---------------------------------------------------- -->
+<section> 
+  <h2>Available Jobs</h2>
+
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Search by Job Title..." oninput="loadJobs()">
+    <select id="sortDate" onchange="sortJobs()">
+      <option value="">Sort by Date</option>
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+    </select>
+    <select id="filterCategory" onchange="filterJobs()">
+      <option value="">Filter by Category</option>
+      <option value="Cooker">Cooker</option>
+      <option value="Cleaner">Cleaner</option>
+      <option value="Old Age Care">Old Age Care</option>
+      <option value="Baby Sitter">Baby Sitter</option>
+      <option value="Gardener">Gardener</option>
+    </select>
+  </div>
+
+  <div id="jobList" class="job-list-container"></div>
+</section>
+
+<!-- Job Details Popup Modal -->
+<div id="jobDetailsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeJobDetails()">&times;</span>
+    <h2>Job Details</h2>
+    <div id="jobDetailsContent"></div>
+  </div>
+</div>
+
+<script>
+  let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+  let bookmarkedJobs = JSON.parse(localStorage.getItem('bookmarkedJobs')) || [];
+
+  // Load jobs and display them
+  function loadJobs() {
+    const jobList = document.getElementById('jobList');
+    const filterCategory = document.getElementById('filterCategory').value;
+    const searchKeyword = document.getElementById('searchInput').value.toLowerCase();
+    jobList.innerHTML = '';
+
+    let displayedJobs = [...jobs];
+
+    // Filter by category
+    if (filterCategory) {
+      displayedJobs = displayedJobs.filter(job => job.category.toLowerCase() === filterCategory.toLowerCase());
+    }
+
+    // Filter by search input (job title)
+    if (searchKeyword) {
+      displayedJobs = displayedJobs.filter(job => job.title.toLowerCase().includes(searchKeyword));
+    }
+
+    // Display each job
+    displayedJobs.forEach((job, index) => {
+      const jobCard = document.createElement('div');
+      jobCard.className = 'job-card';
+      const isBookmarked = bookmarkedJobs.includes(job.title);
+
+      jobCard.innerHTML = `
+        <h3>${job.title}</h3>
+        <p><strong>Salary:</strong> ${job.salary}</p>
+        <p><strong>Time:</strong> ${job.time}</p>
+        <p><strong>Location:</strong> ${job.location}</p>
+        <p><strong>Category:</strong> ${job.category}</p>
+        <p><em>Posted on: ${job.date}</em></p>
+        <button onclick="applyJob(${index})">Apply</button>
+        <button onclick="toggleBookmark(${index})">${isBookmarked ? 'Unbookmark' : 'Bookmark'}</button>
+        <button onclick="viewJobDetails(${index})">View Details</button>
+        <div class="job-description" style="display: none;">
+            <p><strong>Description:</strong> ${job.description}</p>
+        </div>
+      `;
+      jobList.appendChild(jobCard);
+    });
+
+    // If no jobs are displayed, show a message
+    if (displayedJobs.length === 0) {
+      jobList.innerHTML = "<p>No jobs found.</p>";
+    }
+  }
+
+  // Apply for the job
+  function applyJob(index) {
+    const job = jobs[index];
+    localStorage.setItem('selectedJob', JSON.stringify(job)); // Store job details in localStorage
+    window.location.href = 'applyjob.html'; // Redirect to apply job page
+  }
+
+  // Toggle bookmark for the job
+  function toggleBookmark(index) {
+    const job = jobs[index];
+    const jobTitle = job.title;
+
+    if (bookmarkedJobs.includes(jobTitle)) {
+      // Remove from bookmarks
+      bookmarkedJobs = bookmarkedJobs.filter(title => title !== jobTitle);
+    } else {
+      // Add to bookmarks
+      bookmarkedJobs.push(jobTitle);
+    }
+
+    localStorage.setItem('bookmarkedJobs', JSON.stringify(bookmarkedJobs));
+    loadJobs(); // Reload jobs to update bookmark status
+  }
+
+  // View job details in a popup modal and apply background blur to only job listings
+  function viewJobDetails(index) {
+    const job = jobs[index];
+    const modal = document.getElementById('jobDetailsModal');
+    const detailsContent = document.getElementById('jobDetailsContent');
+
+    // Populate modal with job details
+    detailsContent.innerHTML = `
+      <h3>${job.title}</h3>
+      <p><strong>Description:</strong> ${job.description}</p>
+      <p><strong>Salary:</strong> ${job.salary}</p>
+      <p><strong>Time:</strong> ${job.time}</p>
+      <p><strong>Location:</strong> ${job.location}</p>
+      <p><strong>Category:</strong> ${job.category}</p>
+      <p><em>Posted on: ${job.date}</em></p>
+    `;
+
+    // Display the modal
+    modal.style.display = 'block';
+
+    // Apply background blur effect to job listings only
+    document.querySelector('.job-list-container').classList.add('blur-background');
+  }
+
+  // Close the job details popup modal and remove background blur
+  function closeJobDetails() {
+    const modal = document.getElementById('jobDetailsModal');
+    modal.style.display = 'none';
+
+    // Remove background blur effect from job listings
+    document.querySelector('.job-list-container').classList.remove('blur-background');
+  }
+
+  // Close modal when clicked outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('jobDetailsModal');
+    if (event.target == modal) {
+      modal.style.display = 'none';
+
+      // Remove background blur when modal is closed
+      document.querySelector('.job-list-container').classList.remove('blur-background');
+    }
+  }
+
+  // Sort jobs by date
+  function sortJobs() {
+    const sort = document.getElementById('sortDate').value;
+    if (sort === 'newest') {
+      jobs.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sort === 'oldest') {
+      jobs.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+    loadJobs();
+  }
+
+  // Filter jobs by category
+  function filterJobs() {
+    loadJobs();
+  }
+
+  // Load jobs initially
+  loadJobs();
+</script>
+
+<style>
+  /* Add this CSS for background blur effect */
+  .blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+    pointer-events: none; 
+  }
+
+  
+  .modal-content {
+    position: relative;
+    z-index: 1000; /* Modal above blurred background */
+  }
+</style>
+
+
+<!--------------------------------------------------------FOOTER------------------------------------------------->
+<footer>
+  <div class="container">
+       <div class="row">
+             <div class="col" id="company">
+               <h1 class="logo">Tidy<span>Care</span></h1>
+               <p>
+                   We provide reliable home and 
+                   office services, making everyday life smoother and stress-free.
+               </p>
+               <div class="social">
+                   <a href="#"><i class="fab fa-facebook"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-linkedin"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+               </div>
+             </div>
+
+             <div class="col" id="Services">
+              <h3>Services</h3>
+              <div class="links">
+               <a href="cleanner.html">Cleaner</a>
+               <a href="cook.html">Cooker</a>
+               <a href="oldagecare.html">Old Age Care</a>
+               <a href="babysitter.html">Baby Sitter</a>
+               <a href="garden.html">Gardener</a>
+              </div>
+         </div>
+
+         <div class="col" id="quick-Links">
+            <h3>Quick Links</h3>
+            <div class="links">
+               <a href="./index.html">Home</a>
+               <a href="about.html">About</a>
+               <a href="policy.html">Our policy</a>
+               <a href="help.html">Help</a>                   
+            </div>
+         </div>
+
+             <div class="col" id="contact">
+                 <h3>Contact</h3>
+                 <div class="contact-details">
+                   <i class="fa fa-location"></i>
+                   <p>Kumira, Chittagong</p>
+                 </div>
+                 <div class="contact-details">
+                   <i class="fa fa-phone"></i>
+                   <p>+880-1834562322</p>                    
+                 </div>                 
+             </div>
+       </div>
+
+       <div class="row">
+            <div class="form">
+                <form action="">
+                     <input type="text" placeholder="Email here...">
+                     <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                </form>
+            </div>
+       </div>  
+   </div>
+
+   <div class="credit-line">
+       <p>© 2025 TidyCare | All rights reserved.</p>
+   </div>
+</footer>
+</body>
+</html>

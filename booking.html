@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Service Booking Form</title>
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<!------------------------------------------------ Navigation Bar----------------------------------------------- -->
+<nav>
+    <a href="index.html" class="logo">Tidy<span>Care</span></a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="#">Services</a>
+        <div class="dropdown-content">
+          <a href="cleaner.html">Cleaner</a>
+          <a href="cook.html">Cooker</a>
+          <a href="oldagecare.html">Old Age Care</a>
+          <a href="babysitter.html">Baby Sitter</a>
+          <a href="garden.html">Gardener</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="#">Job</a>
+        <div class="dropdown-content">
+          <a href="postjob.html">Post Job</a>
+          <a href="searchjob.html">Search Job</a>
+        </div>
+      </li>
+      <li><a href="./contact.html">Contact</a></li>
+      <li><a href="booking.html">Book Now</a></li>
+      <li><a href="login.html">Log In</a></li>
+    </ul>
+  </nav>
+  <!------------------------------------------------ Navigation Barend----------------------------------------------- -->
+    <main>
+      <div class="form-container">
+        <h2>Service Booking Form</h2>
+        <form onsubmit="return confirmSubmit(event)">
+          <div class="form-slider" id="formSlider">
+            <!-- First Page -->
+            <div class="form-page">
+              <label>I’m enquiring for*:</label>
+              <input type="radio" name="enquiry" value="myself" required> Myself
+              <input type="radio" name="enquiry" value="someone" required> Someone else
+  
+              <br><br>
+  
+              <label>I am interested in the following service(s)*:</label>
+              <ul class="service-list">
+                <li onclick="toggleDropdown('cooking')"><i class="fas fa-utensils"></i> Cooking</li>
+<div id="cooking-options" class="sub-options">
+  <input type="checkbox" class="option" value="200" onclick="calculateTotal()"> Home Cooking (৳ 200/meal)<br>
+  <input type="checkbox" class="option" value="500" onclick="calculateTotal()"> Event Catering (৳ 500/event)<br>
+  <input type="checkbox" class="option" value="1400" onclick="calculateTotal()"> Custom Meal Plans (৳ 1400/week)<br>
+  <input type="checkbox" class="option" value="20000" onclick="calculateTotal()"> Full-Time Cook (৳ 20000/month)<br>
+</div>
+  
+                <li onclick="toggleDropdown('cleaning')"><i class="fas fa-broom"></i> Cleaning</li>
+                <div id="cleaning-options" class="sub-options">
+                  <input type="checkbox" class="option" value="1000" onclick="calculateTotal()"> a (1000 BDT)<br>
+                  <input type="checkbox" class="option" value="2000" onclick="calculateTotal()"> b (2000 BDT)<br>
+                  <input type="checkbox" class="option" value="3000" onclick="calculateTotal()"> c (3000 BDT)<br>
+                  <input type="checkbox" class="option" value="4000" onclick="calculateTotal()"> d (4000 BDT)<br>
+                  <input type="checkbox" class="option" value="600" onclick="calculateTotal()"> e (600 BDT)<br>
+                </div>
+  
+                <li onclick="toggleDropdown('oldcare')"><i class="fas fa-bed"></i> Old Age Care</li>
+<div id="oldcare-options" class="sub-options">
+  <input type="checkbox" class="option" value="3038" onclick="calculateTotal()"> Personal hygiene and grooming assistance (3,038 BDT/hour)<br>
+  <input type="checkbox" class="option" value="3645" onclick="calculateTotal()"> Medication reminders and health monitoring (3,645 BDT)<br>
+  <input type="checkbox" class="option" value="3038" onclick="calculateTotal()"> Meal preparation and nutritional guidance (3,038 BDT)<br>
+  <input type="checkbox" class="option" value="2430" onclick="calculateTotal()"> Companionship and emotional support (2,430 BDT)<br>
+  <input type="checkbox" class="option" value="3645" onclick="calculateTotal()"> Mobility assistance and light physical exercises (3,645 BDT)<br>
+</div>
+  
+<li onclick="toggleDropdown('babysitter')"><i class="fas fa-child"></i> Babysitter</li>
+<div id="babysitter-options" class="sub-options">
+  <input type="checkbox" class="option" value="500" onclick="calculateTotal()"> Part-Time Babysitting (500 BDT)<br>
+  <input type="checkbox" class="option" value="2000" onclick="calculateTotal()"> Full-Time Nanny (2,000 BDT)<br>
+  <input type="checkbox" class="option" value="3999" onclick="calculateTotal()"> Special Needs Babysitting (3,999 BDT)<br>
+  <input type="checkbox" class="option" value="2999" onclick="calculateTotal()"> Night-Time Babysitting (2,999 BDT)<br>
+  <input type="checkbox" class="option" value="3000" onclick="calculateTotal()"> Emergency Babysitting (3,000 BDT)<br>
+</div>
+  
+                <li onclick="toggleDropdown('gardener')"><i class="fas fa-leaf"></i> Gardener</li>
+                <div id="gardener-options" class="sub-options">
+                  <input type="checkbox" class="option" value="1000" onclick="calculateTotal()"> a (1000 BDT)<br>
+                  <input type="checkbox" class="option" value="2000" onclick="calculateTotal()"> b (2000 BDT)<br>
+                  <input type="checkbox" class="option" value="3000" onclick="calculateTotal()"> c (3000 BDT)<br>
+                  <input type="checkbox" class="option" value="4000" onclick="calculateTotal()"> d (4000 BDT)<br>
+                  <input type="checkbox" class="option" value="600" onclick="calculateTotal()"> e (600 BDT)<br>
+                </div>
+              </ul>
+  
+              <div class="total-container">
+                <label>Total Amount:</label><br>
+                <input type="text" id="totalAmount" readonly>
+              </div>
+  
+              <button type="button" onclick="nextPage()">Next</button>
+            </div>
+  
+            <!-- Second Page -->
+            <div class="form-page">
+              <div class="form-row">
+                <div>
+                  <label for="name">Name*:</label>
+                  <input type="text" id="name" required>
+                </div>
+                <div>
+                  <label for="email">Email*:</label>
+                  <input type="email" id="email" required>
+                </div>
+              </div>
+  
+              <div class="form-row">
+                <div>
+                  <label for="phone">Phone number*:</label>
+                  <input type="tel" id="phone" required>
+                </div>
+                <div>
+                  <label for="location">Location*:</label>
+                  <input type="text" id="location" required>
+                </div>
+              </div>
+  
+              <label for="description">Description*:</label>
+              <textarea id="description" rows="3" required></textarea>
+  
+              <label for="datetime">Preferred Date & Time*:</label>
+              <input type="datetime-local" id="datetime" required>
+  
+              <div class="buttons">
+                <button type="button" onclick="prevPage()">Back</button>
+                <button type="submit">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+  
+  
+
+<script src="booking.js"></script>
+<!------------------------------------------------ footer----------------------------------------------- -->
+<footer>
+    <div class="container">
+         <div class="row">
+               <div class="col" id="company">
+                 <h1 class="logo">Tidy<span>Care</span></h1>
+                 <p>
+                     We provide reliable home and 
+                     office services, making everyday life smoother and stress-free.
+                 </p>
+                 <div class="social">
+                     <a href="#"><i class="fab fa-facebook"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-linkedin"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                 </div>
+               </div>
+ 
+               <div class="col" id="Services">
+                <h3>Services</h3>
+                <div class="links">
+                 <a href="cleanner.html">Cleaner</a>
+                 <a href="cook.html">Cooker</a>
+                 <a href="oldagecare.html">Old Age Care</a>
+                 <a href="babysitter.html">Baby Sitter</a>
+                 <a href="garden.html">Gardener</a>
+                </div>
+           </div>
+
+           <div class="col" id="quick-Links">
+              <h3>Quick Links</h3>
+              <div class="links">
+                 <a href="./index.html">Home</a>
+                 <a href="about.html">About</a>
+                 <a href="policy.html">Our policy</a>
+                 <a href="help.html">Help</a>                   
+              </div>
+           </div>
+ 
+               <div class="col" id="contact">
+                   <h3>Contact</h3>
+                   <div class="contact-details">
+                     <i class="fa fa-location"></i>
+                     <p>Kumira, Chittagong</p>
+                   </div>
+                   <div class="contact-details">
+                     <i class="fa fa-phone"></i>
+                     <p>+880-1834562322</p>                    
+                   </div>                 
+               </div>
+         </div>
+ 
+         <div class="row">
+              <div class="form">
+                  <form action="">
+                       <input type="text" placeholder="Email here...">
+                       <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                  </form>
+              </div>
+         </div>  
+     </div>
+ 
+     <div class="credit-line">
+         <p>© 2025 TidyCare | All rights reserved.</p>
+     </div>
+ </footer>
+ <!------------------------------------------------ footer----------------------------------------------- -->
+</body>
+</html>

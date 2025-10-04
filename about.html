@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TidyCare - Services</title>
+    <link rel="stylesheet" href="about.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+  <header>
+     <div class="container">
+   
+    <!-- Navigation Bar -->
+    <nav>
+      <a href="index.html" class="logo">Tidy<span>Care</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services</a>
+                <div class="dropdown-content">
+                    <a href="cleanner.html">Cleaner</a>
+                    <a href="cook.html">Cooker</a>
+                    <a href="oldagecare.html">Old Age Care</a>
+                    <a href="#babysitter">Baby Sitter</a>
+                    <a href="garden.html">Gardener</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#">Job</a>
+                <div class="dropdown-content">
+                    <a href="postjob.html">Post Job</a>
+                    <a href="searchjob.html">Search Job</a>
+                </div>
+            </li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="booking.html">Book Now</a></li>
+            <li><a href="login.html">Log In</a></li>
+        </ul>
+    </nav>
+    <h1>About Us</h1>
+
+  </div>
+  </header>
+
+<section class="about zigzag-left">
+  <div class="content">
+      <h2>Our Story</h2>
+      <p>At TidyCare, we believe that a harmonious and well-maintained environment is key to living and working in peace. Born from a passion for making life easier and more comfortable, we offer comprehensive home and office services tailored to meet your needs. From nourishing home-cooked meals to providing reliable and caring nurses, our goal is to bring peace of mind to every home and workplace.</p>
+  </div>
+  <div class="image">
+      <img src="images/our_story.jpeg" alt="Our Story Image">
+  </div>
+</section>
+
+<section class="who-we-serve zigzag-right">
+  <div class="content">
+      <h2>Who We Serve</h2>
+      <p>We cater to a wide range of clients, from busy professionals needing a helping hand in the kitchen to families looking for reliable nursing services or individuals seeking a peaceful, clean environment at home or the office. Whether you're juggling work, life, or both, we are here to assist you with tailored solutions that fit your needs.</p>
+  </div>
+  <div class="image">
+    <img src="images/our_story1.jpeg" alt="Image 1">
+  </div>
+</section>
+
+<script>
+  // JavaScript for Scroll Animations
+
+// Function to add the animation class when an element is in view
+function animateOnScroll() {
+    const sections = document.querySelectorAll('section');
+
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Check if the section is in view
+        if (rect.top <= windowHeight - 100) {
+            section.style.opacity = 1;
+            section.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// Listen for scroll events to trigger the animation
+window.addEventListener('scroll', animateOnScroll);
+
+// Initial call to animate sections that are already in view
+animateOnScroll();
+
+</script>
+
+<section id="success">
+    <div class="container">
+      <h2 class="section-heading">Track of Our Success</h2>
+      <div class="success-content">
+        <div class="success-item">
+          <h3 class="count" data-count="500">0</h3>
+          <p>Happy Clients</p>
+        </div>
+        <div class="success-item">
+          <h3 class="count" data-count="10">0</h3>
+          <p>Years of Experience</p>
+        </div>
+        <div class="success-item">
+          <h3 class="count" data-count="100">0</h3>
+          <p>Projects Completed</p>
+        </div>
+        <div class="success-item">
+          <h3 class="count" data-count="5">0</h3>
+          <p>Star Rating</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+      const counters = document.querySelectorAll('.count');
+      
+      const countUp = (counter) => {
+        const target = +counter.getAttribute('data-count');
+        let current = 0;
+        const increment = target / 200;
+        
+        const interval = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(interval);
+          } else {
+            counter.textContent = Math.floor(current);
+          }
+        }, 10);
+      };
+
+      // Start counting when the section is in the viewport
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            counters.forEach(count => countUp(count));
+            observer.disconnect();
+          }
+        });
+      });
+
+      observer.observe(document.querySelector('#success'));
+    });
+  </script>
+
+<!------------- Meet Our Team Section ------------>
+<section id="team">
+  <h2 class="team-heading">Meet Our Team</h2>
+  <div class="team-container">
+      <div class="team-member">
+          <img src="images/tm1.jpeg" alt="Team Member">
+          <h4>Arpita Dey</h4>     
+          <p>
+              ID-C241483<br/>
+              <i class="fa fa-phone"></i> +880-18*********
+          </p>
+      </div>
+      <div class="team-member">
+          <img src="images/tm2.jpeg" alt="Team Member">
+          <h4>Tahmina Sultana</h4>
+          <p>
+              ID-C241492<br/>
+              <i class="fa fa-phone"></i> +880-18*********
+          </p>
+      </div>
+      <div class="team-member">
+          <img src="images/tm3.jpeg" alt="Team Member">
+          <h4>Samira Tasnim</h4>
+          <p>
+              ID-C241497<br/>
+              <i class="fa fa-phone"></i> +880-18*********
+          </p>
+      </div>
+  </div>
+</section>
+
+<!---------------FOOTER--------------------->
+<footer>
+  <div class="container">
+       <div class="row">
+             <div class="col" id="company">
+               <h1 class="logo">Tidy<span>Care</span></h1>
+               <p>
+                   We provide reliable home and 
+                   office services, making everyday life smoother and stress-free.
+               </p>
+               <div class="social">
+                   <a href="#"><i class="fab fa-facebook"></i></a>
+                   <a href="#"><i class="fab fa-instagram"></i></a>
+                   <a href="#"><i class="fab fa-linkedin"></i></a>
+                   <a href="#"><i class="fab fa-twitter"></i></a>
+               </div>
+             </div>
+
+             <div class="col" id="Services">
+              <h3>Services</h3>
+              <div class="links">
+               <a href="cleanner.html">Cleaner</a>
+               <a href="cook.html">Cooker</a>
+               <a href="oldagecare.html">Old Age Care</a>
+               <a href="babysitter.html">Baby Sitter</a>
+               <a href="garden.html">Gardener</a>
+              </div>
+         </div>
+
+         <div class="col" id="quick-Links">
+            <h3>Quick Links</h3>
+            <div class="links">
+               <a href="./index.html">Home</a>
+               <a href="about.html">About</a>
+               <a href="policy.html">Our policy</a>
+               <a href="help.html">Help</a>                   
+            </div>
+         </div>
+             <div class="col" id="contact">
+                 <h3>Contact</h3>
+                 <div class="contact-details">
+                   <i class="fa fa-location"></i>
+                   <p>Kumira, Chittagong</p>
+                 </div>
+                 <div class="contact-details">
+                   <i class="fa fa-phone"></i>
+                   <p>+880-1834562322</p>                    
+                 </div>                 
+             </div>
+       </div>
+
+       <div class="row">
+            <div class="form">
+                <form action="">
+                     <input type="text" placeholder="Email here...">
+                     <a href="#"><button><i class="fa fa-paper-plane"></i></button></a>
+                </form>
+            </div>
+       </div>  
+   </div>
+
+   <div class="credit-line">
+       <p>© 2025 TidyCare | All rights reserved.</p>
+   </div>
+</footer>
+ <!---------------FOOTER END--------------------->
+</body>
+</html>
+
